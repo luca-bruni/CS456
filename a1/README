@@ -1,0 +1,13 @@
+Language: Python 3.9.1 64-bit
+IDE: Visual Studio Code
+Initial testing environment: Command line shell
+
+How to run this program:
+1. Open two command line windows
+2. On the first terminal window, run 'py server.py <req_code>'
+    - <req_code> is the server's intended request code for client communication; positive integer
+3. On the second terminal window, run 'py client.py <server_address> <n_port> <req_code> <msg>'
+    - <server_address> is the address of the server; string
+    - <n_port> is the initial fixed port for TCP connection; positive integer
+    - <req_code> is the very light authentication used to verify TCP connection between client and server; positive interger
+    - <msg> is the message send to the server by the client in hopes of receiving a response of it reversed; string
