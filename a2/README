@@ -1,0 +1,31 @@
+How to run this program:
+
+1. Open three terminal windows, and run the following three commands; one on each windows
+    ./nEmulator <emulator's receiving UDP port number in the forward (sender) direction> (Integer: Valid port number)
+                <receiver's network address> (String: IP format or hostname format)
+                <receiver's receiving UDP port number> (Integer: Valid port number)
+                <emulator's receiving UDP port number in the backward (receiver) direction> (Integer: Valid port number)
+                <sender's network address> (String: IP format or hostname format)
+                <sender's receiving UDP port number> (Integer: Valid port number)
+                <maximum delay of the link in units of millisecond> (Integer: Non-negative)
+                <packet discard probability> (Float: Non-negative between 0 and 1)  
+                <verbose-mode> (Boolean: Set to 1, the network emulator will output its internal processing)
+    py receiver.py <emulator's network address> (String: IP format or hostname format)
+                   <emulator's receiving UDP port number in the backward (receiver) direction> (Integer: Valid port number)
+                   <receiver's receiving UDP port number> (Integer: Valid port number)
+                   <output file> (String: File name)
+    py sender.py <emulator's network address> (String: IP format or hostname format)
+                 <emulator's receiving UDP port number in the forward (sender) direction> (Integer: Valid port number)
+                 <sender's receiving UDP port number> (Integer: Valid port number)
+                 <timeout in milliseconds> (Integer: Non-negative)
+                 <input file> (String: File name)
+
+Sample input (on one machine):
+./nEmulator 35000 localhost 35001 35002 localhost 34999 0 0 1
+python3 receiver.py localhost 35002 35001 test.out
+python3 sender.py localhost 35000 34999 10 test.txt
+
+Which machines the program was tested on (with sample input):
+nEmulator - UBUNTU2004-008: python3 network_emulator.py 35000 ubuntu2004-002 35001 35002 ubuntu2004-004 34999 10 0.2 1
+Receiver - UBUNTU2004-002: python3 receiver.py ubuntu2004-008 35002 35001 test.out
+Sender - UBUNTU2004-004: python3 sender.py ubuntu2004-008 35000 34999 1000 test.txt
